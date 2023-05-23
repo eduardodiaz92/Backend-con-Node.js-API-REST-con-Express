@@ -15,5 +15,13 @@ function errorHandler(err, req, res, next) {
     stack: err.stack, //mostrar info del error
   });
 }
+function boomErrorHandler(err, req, res, next) {
+  if (err.isBoom) {
+    const { output } = err;
+    res.status(output.statusCode).json(output.payload);
+  } else {
+    next(err);
+  }
+}
 
-module.exports = { logErrors, errorHandler }; //exportarlo como modulo
+module.exports = { logErrors, errorHandler, boomErrorHandler }; //exportarlo como modulo
