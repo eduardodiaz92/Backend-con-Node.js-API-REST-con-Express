@@ -7,7 +7,7 @@ class ProductsService {
     this.generate();
   }
 
-  async generate() {
+  generate() {
     const limit = 10;
 
     for (let i = 0; i < limit; i++) {
@@ -30,7 +30,7 @@ class ProductsService {
     return newProduct;
   }
 
-  find() {
+  async find() {
     return this.products;
   }
 
